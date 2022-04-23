@@ -1,25 +1,21 @@
-const Joi = require('joi');
 const express = require('express');
-// const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger.json');
+const executor = require('./executor')
 
 const app = express();
 app.use(express.json());
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {}));
 
-app.post('/executeMonitor', (req, res) => {
-    const schema = {
-        id: Joi.string().required(),
-        monitor_url: Joi.string().required()
-    }
+app.get('/', (req, res) => {
+    res.send('welcome to postpostman monitors executor');
+})
 
-    const result = Joi.ValidationError(req.body, schema);
-    if(result.error) {
+app.post('/executeMonitor', async (req, res) => {
+    const reqBody = (req.body)
+    if(!reqBody.monitor_url) {
         res.status(400).send(result.error.details[0].message);
         return;
     }
-
-    res.send(req.body);
+    results = await executor(reqBody.monitor_url);
+    res.send(results);
 });
 
 const port = process.env.EXECUTOR_PORT || 3000
