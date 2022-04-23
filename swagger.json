@@ -1,0 +1,43 @@
+
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "",
+        "version": "1.0.0",
+        "title": "Postpostman Executor",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3080",
+    "basePath": "/api",
+    "paths" : {
+        "/executeMonitor" : {
+            "post" : {
+                "summary" : "execute",
+                "description": "",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {},
+                                "monitor_url": {}
+                            }
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    }, 
+    "definitions": {}
+}
