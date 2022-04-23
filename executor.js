@@ -1,9 +1,9 @@
 const newman = require('newman'); 
 const axios = require('axios')
 
-function execute(monitorUrl) {
+function execute(collection_url) {
     const monitorRunner = new Promise((resolve, reject) => {
-        axios.get(monitorUrl).then(res => {
+        axios.get(collection_url).then(res => {
             newman.run({
                 collection: res.data,
                 reporters: 'cli'

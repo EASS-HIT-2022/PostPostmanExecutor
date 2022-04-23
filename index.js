@@ -10,11 +10,12 @@ app.get('/', (req, res) => {
 
 app.post('/executeMonitor', async (req, res) => {
     const reqBody = (req.body)
-    if(!reqBody.monitor_url) {
+    console.log(reqBody)
+    if(!reqBody.collection_url) {
         res.status(400).send(result.error.details[0].message);
         return;
     }
-    results = await executor(reqBody.monitor_url);
+    results = await executor(reqBody.collection_url);
     res.send(results);
 });
 
